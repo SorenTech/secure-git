@@ -2,7 +2,48 @@
 # the repo. Unless a later match takes precedence,
 # users in the global_owners variable will be requested for
 # review when someone opens a pull request.
-*       {{ global_owners | contributors }}
+*       {{ global_owners | admin_contributors }}
 
 # Order is important; the last matching pattern takes the most
-# precedence.
+# precedence. When someone opens a pull request that only
+# modifies PY files, only the users in py_owners and not the global
+# owner(s) will be requested for a review.
+*.py    {{ py_owners | admin_contributors }}
+
+# Reviewers for .js files
+*.js    {{ js_owners | admin_contributors }}
+
+# Reviewers for .java files
+*.java  {{ java_owners | admin_contributors }}
+
+# Reviewers for .c and company
+*.cs    {{ c_owners | admin_contributors }}
+*.net   {{ c_owners | admin_contributors }}
+*.c     {{ c_owners | admin_contributors }}
+*.h     {{ c_owners | admin_contributors }}
+*.cpp   {{ c_owners | admin_contributors }}
+*.cc    {{ c_owners | admin_contributors }}
+*.cxx   {{ c_owners | admin_contributors }}
+*.C     {{ c_owners | admin_contributors }}
+*.c++   {{ c_owners | admin_contributors }}
+
+# Reviewers for .go files
+*.go    {{ go_owners | admin_contributors }}
+
+# Reviewers for .r files
+*.r     {{ r_owners | admin_contributors }}
+
+# Reviewers for .rb files
+*.rb    {{ rb_owners | admin_contributors }}
+
+# Reviewers for .swift files
+*.swift {{ swift_owners | admin_contributors }}
+
+# Reviewers for .php files
+*.php   {{ php_owners | admin_contributors }}
+
+# Reviewers for .sh files
+*.sh    {{ sh_owners | admin_contributors }}
+
+# Documentation owners
+/docs/  {{ docs_owners | admin_contributors }}
