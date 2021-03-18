@@ -1,5 +1,4 @@
-get_branch_protections = """
-{
+get_branch_protections = {
     repository(owner: self.owner, name self.name) {
         branchProtectionRules {
             edges {
@@ -40,5 +39,9 @@ get_branch_protections = """
             }
         }
 }
-"""
 
+update_branch_protections = {
+    updateBranchProtectionRule (input:{allowsDeletions:False, allowsForcePushes:False, isAdminEnforced:True, requiresApprovingReviews:True, requiredApprovingReviewsCount:1, requiresCodeOwnerReviews:True, restrictReviewDismissals:True, requireCommitSignatures:True, requiresLinearHistory:False, restrictPushes:True}) {
+        branchProtectionRule
+    }
+}
