@@ -40,8 +40,20 @@ get_branch_protections = {
         }
 }
 
-update_branch_protections = {
-    updateBranchProtectionRule (input:{allowsDeletions:False, allowsForcePushes:False, isAdminEnforced:True, requiresApprovingReviews:True, requiredApprovingReviewsCount:1, requiresCodeOwnerReviews:True, restrictReviewDismissals:True, requireCommitSignatures:True, requiresLinearHistory:False, restrictPushes:True}) {
+update_branch_protections_main = {
+    updateBranchProtectionRule (input:{pattern:"main, master, release*, beta*", allowsDeletions:False, allowsForcePushes:False, isAdminEnforced:True, requiresApprovingReviews:True, requiredApprovingReviewsCount:1, requiresCodeOwnerReviews:True, restrictReviewDismissals:True, requireCommitSignatures:True, requiresLinearHistory:False, restrictPushes:True}) {
+        branchProtectionRule
+    }
+}
+
+update_branch_protections_develop = {
+    updateBranchProtectionRule (input:{pattern:"dev, develop", allowsDeletions:False, allowsForcePushes:False, requiresApprovingReviews:True, requiredApprovingReviewsCount:1, requireCommitSignatures:True, requiresLinearHistory:False, restrictPushes:True}) {
+        branchProtectionRule
+    }
+}
+
+update_branch_protections_baseline = {
+    updateBranchProtectionRule (input:{pattern:"*", allowsForcePushes:False, requireCommitSignatures:True}) {
         branchProtectionRule
     }
 }
