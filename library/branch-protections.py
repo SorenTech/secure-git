@@ -1,3 +1,5 @@
+# GraphQL query for getting current branch protection rules, mutations for setting branch protections based on pattern of most protection around main, slightly loosened protections around develop, baseline protections for all other branches
+
 get_branch_protections = {
     repository(owner: self.owner, name self.name) {
         branchProtectionRules {
