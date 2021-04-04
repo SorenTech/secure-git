@@ -17,12 +17,13 @@ A CLI utility to secure a GitHub repo following the best practices identified in
 
 ## What It Does:
 - Sets branch protections block direct pushes to main and release branches, require merge reviews on main, release, and development branches, block force pushes on all branches, and require commit signing on all branches
-- Verifies that new collaborators on a project have public keys (not an enforcement of SSH or commit signing, but verifies the theoretical capability of these by your collaborator)
+- Verifies that new collaborators on a project have public keys (not an enforcement of SSH access, but verifies the theoretical capability of these by your collaborator)
 - Creates a CODEOWNERS file from a template that lists owners required for reviews before merging into Main or Release branches
 - Can add new collaborators or owners to an existing project
 - Creates new projects following all guidelines (collecting variables either from a file, CLI flags, or interactive prompts)
 - Updates existing projects to follow guidelines
 - Validates settings on a repository and tells you where you are lacking
+- Updates your local `.gitconfig` file to prefer SSH and automatically sign commits if those settings are not already your defaults
 
 ## How It Does It:
 - It uses the GitHub GraphQL API wherever possible
