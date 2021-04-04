@@ -43,13 +43,13 @@ get_branch_protections = {
 }
 
 update_branch_protections_main = {
-    updateBranchProtectionRule (input:{pattern:"main, master, release*, beta*", allowsDeletions:False, allowsForcePushes:False, isAdminEnforced:True, requiresApprovingReviews:True, requiredApprovingReviewsCount:this.mainReviewsCount, requiresCodeOwnerReviews:True, restrictReviewDismissals:True, requireCommitSignatures:True, requiresLinearHistory:False, restrictPushes:True}) {
+    updateBranchProtectionRule (input:{pattern:this.main_branch_pattern, allowsDeletions:False, allowsForcePushes:False, isAdminEnforced:True, requiresApprovingReviews:True, requiredApprovingReviewsCount:this.main_review_count, requiresCodeOwnerReviews:True, restrictReviewDismissals:True, requireCommitSignatures:True, requiresLinearHistory:False, restrictPushes:True}) {
         branchProtectionRule
     }
 }
 
 update_branch_protections_develop = {
-    updateBranchProtectionRule (input:{pattern:"dev, develop", allowsDeletions:False, allowsForcePushes:False, requiresApprovingReviews:True, requiredApprovingReviewsCount:this.devReviewsCount, requireCommitSignatures:True, requiresLinearHistory:False, restrictPushes:True}) {
+    updateBranchProtectionRule (input:{pattern:this.dev_branch_pattern, allowsDeletions:False, allowsForcePushes:False, requiresApprovingReviews:True, requiredApprovingReviewsCount:this.dev_review_count, requireCommitSignatures:True, requiresLinearHistory:False, restrictPushes:True}) {
         branchProtectionRule
     }
 }

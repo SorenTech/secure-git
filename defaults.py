@@ -1,7 +1,13 @@
-from github import Github
+# Defines default variables to be used if overrides haven't been set
 
-default_protected_branches = ["main", "develop"]
+main_branch_pattern = "main, master, release*, beta*"
 
-org_contributors = self.Github.organization.get_public_members()
+dev_branch_pattern = "dev, develop"
 
-admin_collaborators = self.Github.get_user()
+org_contributors = [this.user]
+
+admin_collaborators = [this.user]
+
+main_review_count = 1
+
+dev_review_count = 1
