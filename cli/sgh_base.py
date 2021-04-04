@@ -1,0 +1,1 @@
+# Base CLI command. Intent here is to parse arguments and handle reporting to the user
