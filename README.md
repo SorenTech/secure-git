@@ -7,7 +7,7 @@ A CLI utility to secure a GitHub repo following the best practices identified in
 - Require commit signing (future goal: ability to generate and upload gpg keys if needed)
 - Use branch protections for defined branches
 - Require code reviews and admin sign off on merges
-- Use PATs for automation agents
+- Use PATs for automation agents (will get new PATs for you to use)
 - Use SSH access for authenticated user (future goal: if no key, generate and add key, ensure .gitconfig prefers SSH for github repos)
 
 ## Things You Still Need To Do
@@ -17,7 +17,7 @@ A CLI utility to secure a GitHub repo following the best practices identified in
 
 ## What It Does:
 - Sets branch protections block direct pushes to main and release branches, require merge reviews on main, release, and development branches, block force pushes on all branches, and require commit signing on all branches
-- Verifies that new collaborators on a project have public keys (not an enforcement of SSH access, but verifies the theoretical capability of these by your collaborator)
+- Verifies that new collaborators on a project have public keys (not an enforcement of SSH access, but verifies the theoretical capability of this by your collaborators)
 - Creates a CODEOWNERS file from a template that lists owners required for reviews before merging into Main or Release branches
 - Can add new collaborators or owners to an existing project
 - Creates new projects following all guidelines (collecting variables either from a file, CLI flags, or interactive prompts)
@@ -28,7 +28,7 @@ A CLI utility to secure a GitHub repo following the best practices identified in
 ## How It Does It:
 - It uses the GitHub GraphQL API wherever possible
 - When not possible (a few things that aren't in the GraphQL API), falls back to the REST API
-- Written in Python with no dependencies
+- Written in Python with no dependencies except the "requests" library
 - Authenticates to GitHub using a PAT, provided either in a config file, environmental variables, or via a CLI flag
 
 ## What It Will Do Someday:
