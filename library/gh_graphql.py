@@ -3,7 +3,7 @@
 import requests
 
 # construct request header
-def construct_header(token)
+def construct_graphql_header(token)
     header = {"Authorization": "bearer " + token}
     return header
 
