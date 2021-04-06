@@ -1,0 +1,2 @@
+# Wrapper around sgh_status that is run after other commands to confirm requested policies were successfully implemented
+# Can also be run as a standalone command to provide assurance that policies are in effect
