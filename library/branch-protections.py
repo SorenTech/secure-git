@@ -18,12 +18,14 @@ query($owner:Str!, $name:Str!) {
                         edges {
                             node {
                                 actor {
-                                    login
-                                    name
+                                    ... on User {
+                                        login
+                                        name
                                     }
                                 }
                             }
                         }
+                    }
                     requiresCommitSignatures
                     requiresLinearHistory
                     restrictsPushes
@@ -31,8 +33,9 @@ query($owner:Str!, $name:Str!) {
                         edges {
                             node {
                                 actor {
-                                    login
-                                    name
+                                    ... on User {
+                                        login
+                                        name
                                     }
                                 }
                             }
@@ -41,6 +44,7 @@ query($owner:Str!, $name:Str!) {
                 }
             }
         }
+    }
 }
 """
 
