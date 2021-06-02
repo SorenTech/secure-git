@@ -11,8 +11,8 @@ class Repository:
         
 # Use Case: Repo-Verification -> Commit Signatures are Required
     def signatureVerification(Repository, reqs_signed_commits):
-        if (!reqs_signed_commits):
-            Repository.hasVerification == false
+        if (reqs_signed_commits == true):
+            Repository.hasVerification = true
             
 # Use Case: Repo-Scanning -> Block Secrets Being Commmitted
 
