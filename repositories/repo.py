@@ -52,14 +52,14 @@ class Repository:
             self.scanningScore = Decimal.add(self.scanningScore, 0.5)
 
 ## Use Case: Repo-Scanning -> Automatic Security Scanning
-    def security_scanning(self, hasSecurityScanning: bool -> float:
+    def security_scanning(self, hasSecurityScanning: bool) -> float:
     '''
     Updates the scanningScore value of the repo based on whether or not automated security scanning is performed.
     '''
         if (hasSecurityScanning == true):
             self.scanningScore = Decimal.add(self.scanningScore, 0.5)
 
-## Use Case: Repo-Protections -> Require Code Reviews
+# Use Case: Repo-Protections -> Require Code Reviews
     def req_code_reviews(self, reqsCodeReviews: bool) -> float:
     '''
     Updates the protectionScore value of the repo based on whether code reviews are required for merges into the main branch.
@@ -67,7 +67,7 @@ class Repository:
         if (reqsCodeReviews == true):
             self.protectionScore = Decimal.add(self.protectionScore, 1/3)
 
-## Use Case: Repo-Protections -> Require Pull Requests on Main
+# Use Case: Repo-Protections -> Require Pull Requests on Main
     def req_pull_requests(self, reqsPullRequests: bool) -> float:
     '''
     Updates the prtoectionScore value of the repo based on whether pull requests are required to merge code into the main branch.
@@ -75,7 +75,7 @@ class Repository:
         if (reqsPullRequests == true):
             self.protectionScore = Decimal.add(self.protectionScore, 1/3)
 
-## Use Case: Repo-Protections -> Prevent Force-Merges 
+# Use Case: Repo-Protections -> Prevent Force-Merges 
     def block_force_merges(self, noForceMerges: bool) -> float:
     '''
     Updates the protectionScore value of the repo based on whether forced merges are blocked for all branches.
