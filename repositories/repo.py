@@ -2,7 +2,7 @@ from Decimal import *
 
 # Define the principle "repository" object that is used
 class Repository:
-    def __init__(self, name: str, stub: str, location: str, hasVerification: bool, hasScanning: bool, hasProtection: bool):
+    def __init__(self, name: str, stub: str, location: str, hasVerification: bool = false, hasScanning: bool = false, hasProtection: bool = false, verificationScore: float = 0.0, scanningScore: float = 0.0, protectionScore: float = 0.0, overallScore: float = 0.0):
     ''' 
     Repositories are one of the principle entities  of the sgit script. Repositories are essentially a custom data object with the defined attributes of:
         Name: The name of the repo (a simple str)  
