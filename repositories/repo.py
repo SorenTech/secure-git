@@ -107,3 +107,21 @@ class Repository:
         if (self.protectionScore == 1):
             self.hasProtection = true
         else: self.hasProtection = false
+        
+    def status_check(sef):
+    '''
+    Updates all boolean flags.
+    '''
+        verification_status()
+        scanning_status()
+        protection_status()
+        
+# Use Case: Reset all scores to zero and recompute booleans before an update
+    def repo_score_reset(self):
+    '''
+    Reset all scores to zero and all booleans to false. Can be used prior to an ensure values all add up.
+    '''
+        self.verificationScore = 0
+        self.scanningScore = 0
+        self.protectionScore = 0
+        status_check()
