@@ -3,7 +3,7 @@ from .repo import Repository as repository
 # Translates GitHub API return values into values pertaining to Repository objects
 
 # Intermediary GitHub API Object:
-class GitHubRepoAPIValues:
+class GitHubObject:
     def __init__(self, repo, signedCommits: bool, verfiedMerges: float, secretBlocking: bool, securityScanning: bool, codeReviews: bool, pullRequests: bool, noForceMerges: bool):
     '''
     Defines an object that (a) references a repo object (the repo being examined) and (b) contains the results of a GitHub API request in the format we need to populate the values of the repo through the Repository class's included methods.
