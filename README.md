@@ -2,39 +2,48 @@
 
 A CLI utility to secure a GitHub repo following the best practices identified in the CNCF Supply Chain Security Whitepaper.
 
-## Recomendations Implemented:
+## Recomendations For a Secure Source Code Repository:
 
-- Require commit signing (future goal: ability to generate and upload gpg keys if needed)
-- Use branch protections for defined branches
-- Require code reviews and admin sign off on merges
-- Use PATs for automation agents (will get new PATs for you to use)
-- Use SSH access for authenticated user (future goal: if no key, generate and add key, ensure .gitconfig prefers SSH for github repos)
+The Cloud Native Computing Foundation published the Software Supply Chain Best Practices paper in May of 2021. Part one of this paper deals with source code repositories. In this section, CNCF makes the following recommendations:
 
-## Things You Still Need To Do
+1. Require signed commits
+2. Verify commits in merges (to achieve "full attestation")
+3. Use automated tooling to block the committing of secrets to a repository
+4. Use automation to enforce coding conventions
+5. Automatically perform security scanning of code and dependencies
+6. Establish and adhere to contribution policies
+7. Define roles/responsibilities and corresponding access controls for contributors
+8. Require code reviews before merges
+9. Prevent "force pushes" and otherwise implement branch protection rules
+10. Require MFA for contributors
+11. Require SSH for repository access
+12. Have a key rotation policy
+13. Use short lived/ephemeral certificates for automation agents
 
-- Require MFA for organization members (one setting and done)
-- Enforce SSH access (no setting, must be monitored and enforced manually)
+You can read more detailed explanations of each of these recommendations in the CNCF paper.
 
-## What It Does:
-- Sets branch protections block direct pushes to main and release branches, require merge reviews on main, release, and development branches, block force pushes on all branches, and require commit signing on all branches
-- Verifies that new collaborators on a project have public keys (not an enforcement of SSH access, but verifies the theoretical capability of this by your collaborators)
-- Creates a CODEOWNERS file from a template that lists owners required for reviews before merging into Main or Release branches
-- Can add new collaborators or owners to an existing project
-- Creates new projects following all guidelines (collecting variables either from a file, CLI flags, or interactive prompts)
-- Updates existing projects to follow guidelines
-- Validates settings on a repository and tells you where you are lacking
-- Updates your local `.gitconfig` file to prefer SSH and automatically sign commits if those settings are not already your defaults
+## What this Project Does:
 
-## How It Does It:
-- It uses the GitHub GraphQL API wherever possible
-- When not possible (a few things that aren't in the GraphQL API), falls back to the REST API
-- Written in Python with no dependencies except the "requests" library
-- Authenticates to GitHub using a PAT, provided either in a config file, environmental variables, or via a CLI flag
+This utility attempts to update as many of the settings as possible around a git repository to meet the above recommendations. It was originally conceived as being focused on GitHub, but is being designed to be platform agnostic so that, through the use of a simple API wrapper, it can work with any Git hosting platform. Different platforms enable different features differently, and not every recommendation can be implemented through code (some will have to be enforced manually by the project's organization). For example, with GitHub the utility can do the following:
 
-## What It Will Do Someday:
-- Generate CONTRIBUTING, CODE_OF_CONDUCT, and SECURITY policies for repository from a template
-- Verify license compliance
-- Create a pre-commit hook to block addition of dependencies that do not meet established security threshholds
+1. Create branch protection rules which require:
+   a. signed commits
+   b. pull requests for certain branches (ie, main)
+   c. code reviews for pull requests
+   d. block force merges
+2. Create a CODEOWNERS file that defines who can sign off of code reviews
+3. Report what percentage of the project's merge commits are signed
+4. Verify that users on a project have SSH keys for their account
+5. Generate and revoke access tokens that can be used for automation agents
+
+In addition, using git and the local system itself, the utility can:
+1. Generate SSH and GPG keys and add them to a user account on GitHub
+2. Verify the presence of certain git hooks (ie, awslabs/git-secrets), which speak to secret blocking, code convention enforcement, and automatic security scanning
+3. Update the local .gitconfig file for a user to prefer SSH and automate commit signing
+
+However, there are certain things that cannot be done on GitHub automatically. For example, we cannot enforce MFA (though this is easy enough for an organization to turn on). And though we can check for SSH keys on user accounts, we can't enforce their use of SSH to access the repo (this just has to be an organizational policy). The closest we can get is changing the local .gitconfig, but this can be undone by a user and/or bypassed at the CLI.
+
+After completing this project for GitHub, the plan is to add support for GitLab and Bitbucket, followed possibly by some other git hosting platforms.
 
 ## Current Status: Infancy
 This project has most of its skeleton, some of the graphql queries/mutations, and none of the actual commands written. As it is updated, we'll update the status here.
