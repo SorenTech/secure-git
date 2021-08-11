@@ -97,12 +97,13 @@ class Repository:
     Updates the authenticationScore value of the repo based on the number of users who meet the authentication requirements.
     '''
         userAuthScores = []
+        userCount = len(users)
         for user in users:
-            if (userAuthMethodsApproved == True):
+            if (user.AuthMethodsApproved == True):
                 userAuthScores + 1
             else:
                 userAuthScores + 0
-        self.authenticationScore = Decimal.add(self.authenticationScore, Decimal.multiply(average(userAuthScores), 0.5))
+        self.authenticationScore = Decimal.add(self.authenticationScore, Decimal.multiply(userAuthScores, 1/userCount, 0.5))
 
 # Use Case: Repo-Authentication -> Agents Meet Authentication Requirements
     def agent_authentication_reqs(self, agents: dict) -> float:
@@ -110,12 +111,13 @@ class Repository:
     Updates the authenticationScore value of the repo based on the number of automation agents who meet the authentication requirements.
     '''
         agentAuthScores = []
+        agentCount = len(agents)
         for agent in agents:
-            if (agentAuthMethodsApproved == True):
+            if (agent.AuthMethodsApproved == True):
                 agentAuthScores + 1
             else:
                 agentAuthScores + 0
-            self.authenticationScore = Decimall.add(self.authenticationScore, Decimal.multiply(average(agentAuthScores), 0.5))
+            self.authenticationScore = Decimall.add(self.authenticationScore, Decimal.multiply(agentAuthScores, 1/agentCount, 0.5))
 
 # Use Case: Update repo bool values based on decimal scores
     def verification_status(self):
