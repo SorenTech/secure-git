@@ -2,7 +2,7 @@ from Decimal import *
 
 # Define the principle "repository" object that is used
 class Repository:
-    def __init__(self, name: str, stub: str, location: str, users: dict, agents: dict, hasVerification: bool = false, hasScanning: bool = false, hasAuthorization: bool = false, hasAuthentication: bool = false, verificationScore: float = 0.0, scanningScore: float = 0.0, authorizationScore: float = 0.0, authenticationScore: float = 0.0, overallScore: float = 0.0):
+    def __init__(self, name: str, stub: str, location: str):
     ''' 
     Repositories are one of the principle entities  of the sgit script. Repositories are essentially a custom data object with the defined attributes of:
         Name: The name of the repo (a simple str)  
@@ -23,16 +23,16 @@ class Repository:
         self.name = name
         self.stub = stub
         self.location = location
-        self.users = users
-        self.agents = agents
-        self.hasVerification = hasVerification
-        self.hasScanning = hasScanning
-        self.hasAuthorization = hasAuthorization
-        self.hasAuthentication = hasAuthentication
-        self.verificationScore = verificationScore
-        self.scanningScore = scanningScore
-        self.authorizationScore = authorizationScore
-        self.authenticationScore = authenticationScore
+        self.users = []
+        self.agents = []
+        self.hasVerification = false
+        self.hasScanning = false
+        self.hasAuthorization = false
+        self.hasAuthentication = 0.0
+        self.verificationScore = 0.0
+        self.scanningScore = 0.0
+        self.authorizationScore = 0.0
+        self.authenticationScore = 0.0
         self.overallScore = Decimal.multiply(Decimal.add(verificationScore, scanningScore, protectionScore, authenticationScore), 1/4)
         
 # Use Case: Repo-Verification -> Commit Signatures are Required
@@ -101,8 +101,6 @@ class Repository:
         for user in users:
             if (user.AuthMethodsApproved == True):
                 userAuthScores + 1
-            else:
-                userAuthScores + 0
         self.authenticationScore = Decimal.add(self.authenticationScore, Decimal.multiply(userAuthScores, 1/userCount, 0.5))
 
 # Use Case: Repo-Authentication -> Agents Meet Authentication Requirements
@@ -115,8 +113,6 @@ class Repository:
         for agent in agents:
             if (agent.AuthMethodsApproved == True):
                 agentAuthScores + 1
-            else:
-                agentAuthScores + 0
             self.authenticationScore = Decimall.add(self.authenticationScore, Decimal.multiply(agentAuthScores, 1/agentCount, 0.5))
 
 # Use Case: Update repo bool values based on decimal scores
