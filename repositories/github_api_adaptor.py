@@ -1,9 +1,11 @@
 from .repo import Repository
 
-# Translates API return values into values pertaining to Repository objects
+'''
+Translates GitHub API return values into Repository object fields.
+'''
 
 # Intermediary API Object:
-class apiObject:
+class GHObject:
     def __init__(self, repo: Repository, signedCommits: bool, verfiedMerges: float, secretBlocking: bool, securityScanning: bool, codeReviews: bool, pullRequests: bool, noForceMerges: bool):
     '''
     Defines an object that (a) references a repo object (the repo being examined) and (b) contains the results of a GitHub API request in the format we need to populate the values of the repo through the Repository class's included methods.
@@ -78,7 +80,6 @@ class apiObject:
     '''
     This is a wrapper method which calls all the above methods in succession to trigger a full update of the repo object based on the API object. It first resets the repo values to zero/false, then updates all the values based on those in the apiObject and finally recomputes the repo's booleans based on the updated values.
     '''
-        repo.repo_score_reset()
         signed_commits()
         verified_merges()
         secret_scanning()
