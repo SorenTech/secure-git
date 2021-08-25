@@ -1,4 +1,6 @@
-# Establishes default policies for repository objects. May be overriden by the settings in config.py
+# Establishes default policies for repository objects.
+
+# sGit will eventually include the ability of users to define local configs that override these values.
 
 
 Signed_Commits = true
@@ -14,7 +16,3 @@ Code_Reviews = true
 Pull_Requests = true
 
 Blocked_Force_Merges = true
-
-User_Auth_Min = 0.75
-
-Agent_Auth_MMin = 0.9
