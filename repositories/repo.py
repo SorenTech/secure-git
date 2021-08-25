@@ -1,4 +1,5 @@
 from Decimal import *
+import .policies
 
 # Define the principle "repository" object that is used
 class Repository:
@@ -84,17 +85,17 @@ class Repository:
     '''
     Sets the hasFullAttestation value to "true" if fullAttestationScore is greater than 75%
     '''
-        if (fullAttestationScore >= 0.75):
+        if (fullAttestationScore >= Merge_Attestation_Min):
             self.hasFullAttestation = true
         else:
             self.hasFullAttestation = false
             
 # Use Case: Repo-Scanning -> Block Secrets Being Commmitted
-    def secret_blocking(self, hasSecretScanning: bool):
+    def secret_blocking(self, secretScanning: bool):
     '''
     Updates the hasSecretBlocking and secretBlockingScore value based on whether or not automated scanning exists to block the committing of secret files to the repository.
     '''
-        if (hasSecretScanning == true):
+        if (secretScanning == true):
             self.hasSecretBlocking = true
             self.secretBlockingScore = 1.0
         else:
@@ -114,11 +115,11 @@ class Repository:
             self.securityScanningScore = 0.0
 
 # Use Case: Repo-Authorizations -> Require Code Reviews
-    def req_code_reviews(self, reqsCodeReviews: bool):
+    def req_code_reviews(self, codeReviews: bool):
     '''
     Updates the hasCodeReviews and codeReviewsScore value of the repo based on whether code reviews are required for merges into the main branch.
     '''
-        if (reqsCodeReviews == true):
+        if (codeReviews == true):
             self.hasCodeReviews = true
             self.codeReviewsScore = 1.0
         else:
@@ -126,11 +127,11 @@ class Repository:
             self.codeReviewsScore = 0.0
 
 # Use Case: Repo-Authorization -> Require Pull Requests on Main
-    def req_pull_requests(self, reqsPullRequests: bool):
+    def req_pull_requests(self, pullRequests: bool):
     '''
     Updates the hasPullRequests and pullRequestsScore values of the repo based on whether pull requests are required to merge code into the main branch.
     '''
-        if (reqsPullRequests == true):
+        if (pullRequests == true):
             self.hasPullRequests = true
             self.pullRequestsScore = 1.0
         else:
@@ -166,7 +167,7 @@ class Repository:
     '''
     Updates the hasUserAuth value if userAuthScore is greater than or equal to 75%
     '''
-        if (self.userAuthScore >= 0.75):
+        if (self.userAuthScore >= User_Auth_Min):
             self.hasUserAuth = true
         else:
             self.hasUserAuth = false
@@ -188,7 +189,7 @@ class Repository:
     '''
     Updates the hasAgentAuth value to true if the agentAuthScore is greater than or equal to 90%
     '''
-        if (self.agentAuthScore >= 0.9):
+        if (self.agentAuthScore >= Agent_Auth_Min):
             self.hasAgentAuth = true
         else:
             self.hasAgentAuth = false
