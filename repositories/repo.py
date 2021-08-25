@@ -5,12 +5,12 @@ import policies.repositories
 
 # Define the principle "repository" object that is used
 class Repository:
-    def __init__(self, name: str, stub: str, location: str):
+    def __init__(self, name: str, host: str, url: str):
     ''' 
     Repositories are one of the principle entities  of the sgit script. Repositories are essentially a custom data object with the defined attributes of:
         Name: The name of the repo (a simple str)  
-        Stub: The User/Name or Org/Name portion of the URL (another str)
-        Location: The URL of the repo (another str)
+        Host: The TLD for the host of the repo's remotes. Ex: github.com (another str)
+        URL: The full URL of the repo. Ex: https://github.com/SorenTech/SecureGitHub (another str)
         Users: A dictionary of users authorized for the repo
         Agents: A dictionary of automation agents authorized for the repo
         Verification Status (hasVerification): Whether the repo meets the verification requirements of the script (bool)

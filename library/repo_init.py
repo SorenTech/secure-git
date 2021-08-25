@@ -7,8 +7,8 @@ root = Path('.')
 git = root / '.git' / 'remotes'
 
 repo_name = ""
-repo_stub = ""
-repo_loc = ""
+repo_host = ""
+repo_url = ""
 
 def get_repo_info(git):
     if (git.exists() && git.is_dir()):
@@ -20,5 +20,5 @@ def get_repo_info(git):
         # to-do: return error
 
 def init_repo():
-    repo = Repository(repo_name, repo_stub, repo_loc)
+    repo = Repository(repo_name, repo_host, repo_url)
     # to-do: persist this somewhere 
