@@ -1,1 +1,0 @@
-# GraphQL query to check for access tokens on user account, mutation to create and retrieve a new token for use by a CI/CD agent or similar

@@ -1,1 +1,0 @@
-# Script to configure local git config to (a) prefer SSH and (b) default to signing all commits
