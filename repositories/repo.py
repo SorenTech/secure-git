@@ -25,8 +25,8 @@ class Repository:
         It is important to note that boolean values indicate adherence to the active sGit configuration. The defaults for this configuraiton line up with the CNCF recommendatiosn for a secure supply chain. However, if the defaults have been modified by the user, a value of "true" may indicate something other than adherence with CNCF policy.
     '''
         self.name = name
-        self.stub = stub
-        self.location = location
+        self.host = host
+        self.url = url
         self.users = []
         self.agents = []
         self.reqsSignedCommits = false
