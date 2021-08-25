@@ -1,5 +1,7 @@
+# Establishes basic repository object and methods for manipulating its values.
+
 from Decimal import *
-import .policies
+import policies.repositories
 
 # Define the principle "repository" object that is used
 class Repository:
@@ -59,7 +61,7 @@ class Repository:
     '''
     Updates the hasSignedCommits value a repo based on whether that repo requires signed commits.
     '''
-        if (reqsSignedCommits == true):
+        if (reqsSignedCommits == Signed_Commits):
             self.hasSignedCommits = true
         else:
             self.hasSignedCommits = false
@@ -95,7 +97,7 @@ class Repository:
     '''
     Updates the hasSecretBlocking and secretBlockingScore value based on whether or not automated scanning exists to block the committing of secret files to the repository.
     '''
-        if (secretScanning == true):
+        if (secretScanning == Secret_Scanning):
             self.hasSecretBlocking = true
             self.secretBlockingScore = 1.0
         else:
@@ -107,7 +109,7 @@ class Repository:
     '''
     Updates the hasSecurityScanning and securityScanningScore value of the repo based on whether or not automated security scanning is performed.
     '''
-        if (securityScanning == true):
+        if (securityScanning == Security_Scanning):
             self.hasSecurityScanning = true
             self.securityScanningScore = 1.0
         else:
@@ -119,7 +121,7 @@ class Repository:
     '''
     Updates the hasCodeReviews and codeReviewsScore value of the repo based on whether code reviews are required for merges into the main branch.
     '''
-        if (codeReviews == true):
+        if (codeReviews == Code_Reviews):
             self.hasCodeReviews = true
             self.codeReviewsScore = 1.0
         else:
@@ -131,7 +133,7 @@ class Repository:
     '''
     Updates the hasPullRequests and pullRequestsScore values of the repo based on whether pull requests are required to merge code into the main branch.
     '''
-        if (pullRequests == true):
+        if (pullRequests == Pull_Requests):
             self.hasPullRequests = true
             self.pullRequestsScore = 1.0
         else:
@@ -143,7 +145,7 @@ class Repository:
     '''
     Updates the hasNoForceMerges and forceMergesScore values of the repo based on whether forced merges are blocked for all branches.
     '''
-        if (noForceMerges == true):
+        if (noForceMerges == Blocked_Force_Merges):
             self.hasNoForceMerges = true
             self.forceMergesScore = 1.0
         else:
