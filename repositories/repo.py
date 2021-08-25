@@ -12,15 +12,17 @@ class Repository:
         URL: The full URL of the repo. Ex: https://github.com/SorenTech/SecureGitHub (another str)
         Users: A dictionary of users authorized for the repo
         Agents: A dictionary of automation agents authorized for the repo
-        Verification Status (hasVerification): Whether the repo meets the verification requirements of the script (bool)
-        Scanning Status (hasScanning): Whether the repo meets the scanning requirements of the script (bool)
-        Authorization Status (hasAuthorization): Whether the repo meets the protection/authorization requirements of the script (bool)
-        Authentication Status (hasAuthentication): Whether the repo's users and automation agents meet the authentication requirements of the script (bool)
-        Verfication Score: The percentage of the verification requirements met by the repo (float)
-        Scanning Score: The percentage of the scanning requirements met by the repo (float)
-        Authorization Score: The percentage of the authorization requirements met by the repo (float)
-        Authentication Score: The percentage of users and automation agents meeting the authentication requirements of the script (float)
-        Overall Score: The average of the verification, scanning, authorization, and authentication scores (float)
+        reqsSignedCommits: A boolean value indicating whether the commit signing policy of the repository matches the sGit policy/config
+        percentSignedCommits: A float identifying the percentage of actual commits in the repository which are validly signed
+        hasFullAttestation: A boolean value indicating whether the repository meets the verified merge requirements of the sGit policy/config
+        percentVerifiedMerges: A float identifying the percentage of actual merges in the repository which are validly signed and verified
+        hasSecretBlocking: A boolean value indicating whether the repository meets the commit-blocking for secrets requirements of the sGit policy/config
+        hasSecurityScanning: A boolean value indicating whether the repository meets the security scanning requirements of the sGit policy/config
+        reqsCodeReviews: A boolean value indicating whether the the repository meets the code reviews requirements of the sGit policy/config
+        reqsPullRequests: A boolean value indicating whether the repository meets the pull request requirements of the sGit policy/config
+        noForceMerges: A boolean value indicating whether the repository meets the force merge blocking requirements of the sGit policy/config
+        
+        It is important to note that boolean values indicate adherence to the active sGit configuration. The defaults for this configuraiton line up with the CNCF recommendatiosn for a secure supply chain. However, if the defaults have been modified by the user, a value of "true" may indicate something other than adherence with CNCF policy.
     '''
         self.name = name
         self.stub = stub
